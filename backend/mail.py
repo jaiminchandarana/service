@@ -54,7 +54,7 @@ def consultation():
     
     
 @app.route("/career", methods=["POST", "OPTIONS"])
-def consultation():
+def career():
     if request.method == "OPTIONS":
         return jsonify({"status": "OK"}), 200
     
@@ -78,7 +78,7 @@ def consultation():
             <strong>Name</strong>: {name}<br>
             <strong>Email</strong>: {email}<br>
             <strong>Phone</strong>: {phone}<br>
-            <strong>experience</strong>: {experience}<br>
+            <strong>Experience</strong>: {experience}<br>
             <strong>Portfolio</strong>: {portfolio}<br>
             <strong>Resume</strong>: {resume}<br>
             <strong>Cover letter</strong>: {coverLetter}<br>
@@ -88,10 +88,39 @@ def consultation():
         ]
         yag.send(
             to="chandaranajaimin@gmail.com",
-            subject="Inquiry For Consultation.",
+            subject="Career Application - TechFlow",
             contents=contents
         )
-        return jsonify({"success": True, "message": "Consulatation sent successfully."})
+        return jsonify({"success": True, "message": "Application sent successfully."})
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500
+
+
+@app.route("/newsletter", methods=["POST", "OPTIONS"])
+def newsletter():
+    if request.method == "OPTIONS":
+        return jsonify({"status": "OK"}), 200
+    
+    data = request.get_json()
+    email = data.get("email")
+
+    sender_email = "24mcajai005@ldce.ac.in"
+    yag = yagmail.SMTP(user=sender_email, password=app_password)
+
+    try:
+        contents = [
+            f"""
+            <h2>New Newsletter Subscription</h2>
+            <strong>Email</strong>: {email}<br>
+            <strong>Subscribed on</strong>: {data.get("timestamp", "Not provided")}
+            """
+        ]
+        yag.send(
+            to="chandaranajaimin@gmail.com",
+            subject="New Newsletter Subscription - TechFlow",
+            contents=contents
+        )
+        return jsonify({"success": True, "message": "Subscription successful."})
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 

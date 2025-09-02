@@ -32,7 +32,7 @@ const Footer = () => {
               A passionate startup delivering innovative IT solutions. We help businesses leverage technology for growth and competitive advantage.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
+              <a href="https://www.linkedin.com/in/jaimin-chandarana-903158225/" className="text-gray-300 hover:text-white transition-colors duration-200">
                 <Linkedin className="h-6 w-6" />
               </a>
               <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">

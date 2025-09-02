@@ -120,7 +120,7 @@ const About = () => {
                   <a href={member.linkedin} className="text-gray-400 hover:text-blue-600 transition-colors duration-200">
                     <Linkedin className="h-6 w-6" />
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-blue-600 transition-colors duration-200">
+                  <a href="mailto:chandaranajaimin@gmail.com" className="text-gray-400 hover:text-blue-600 transition-colors duration-200">
                     <Mail className="h-6 w-6" />
                   </a>
                 </div>

@@ -106,11 +106,6 @@ const Careers = () => {
             </button>
           </div>
         </div>
-      </section>
-            </div>
-
-            </div>
-      </section>
 
       {/* Why Join Us */}
       <section className="py-20 bg-gray-50">
@@ -167,7 +162,7 @@ const Careers = () => {
       </div>
       
       <JobModal 
-        isOpen={showJobModal} 
+        isOpen={JobModal} 
         onClose={() => setShowJobModal(false)}
         onApply={handleApplyFromJob}
       />

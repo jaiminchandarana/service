@@ -153,7 +153,7 @@ const Testimonials = () => {
           
           <div className="grid lg:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8">
+              <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105">
                 <div className="flex items-center mb-6">
                   <img
                     src={testimonial.image}

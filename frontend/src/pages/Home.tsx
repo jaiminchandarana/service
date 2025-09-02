@@ -116,29 +116,31 @@ const Home = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-4 hover:scale-105 group">
                 <div className="mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{service.title}</h3>
+                <p className="text-gray-600 mb-6 min-h-[4.5rem] flex items-start">{service.description}</p>
                 
-                <ul className="space-y-2 mb-6">
+                <ul className="space-y-2 mb-6 min-h-[6rem]">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-600">
+                    <li key={idx} className="flex items-start text-gray-600">
                       <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
                       {feature}
                     </li>
                   ))}
                 </ul>
                 
-                <div className="border-t border-gray-200 pt-6">
-                  <div className="text-lg font-semibold text-blue-600 mb-4">{service.startingPrice}</div>
-                  <a
-                    href={service.href}
-                    className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
-                  >
-                    Request a Quote
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
+                <div className="border-t border-gray-200 pt-6 mt-auto">
+                  <div className="text-lg font-semibold text-blue-600 mb-4 min-h-[1.75rem] flex items-center">{service.startingPrice}</div>
+                  <div className="flex justify-center">
+                    <a
+                      href={service.href}
+                      className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200 group-hover:bg-blue-600 group-hover:text-white px-4 py-2 rounded-lg"
+                    >
+                      Request a Quote
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -155,27 +157,27 @@ const Home = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 rounded-full p-4 inline-block mb-4">
-                <Users className="h-8 w-8 text-blue-600" />
+            <div className="text-center group cursor-pointer">
+              <div className="bg-blue-100 rounded-full p-4 inline-block mb-4 group-hover:bg-blue-600 group-hover:shadow-lg group-hover:shadow-blue-300/50 transition-all duration-300 transform group-hover:scale-110">
+                <Users className="h-8 w-8 text-blue-600 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Passionate Founder</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">Passionate Founder</h3>
               <p className="text-gray-600">Dedicated founder with deep expertise in modern technologies and startup mindset</p>
             </div>
             
-            <div className="text-center">
-              <div className="bg-teal-100 rounded-full p-4 inline-block mb-4">
-                <Zap className="h-8 w-8 text-teal-600" />
+            <div className="text-center group cursor-pointer">
+              <div className="bg-teal-100 rounded-full p-4 inline-block mb-4 group-hover:bg-teal-600 group-hover:shadow-lg group-hover:shadow-teal-300/50 transition-all duration-300 transform group-hover:scale-110">
+                <Zap className="h-8 w-8 text-teal-600 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Agile & Fast</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors duration-300">Agile & Fast</h3>
               <p className="text-gray-600">Startup agility means faster decisions, quicker iterations, and rapid delivery</p>
             </div>
             
-            <div className="text-center">
-              <div className="bg-orange-100 rounded-full p-4 inline-block mb-4">
-                <Shield className="h-8 w-8 text-orange-600" />
+            <div className="text-center group cursor-pointer">
+              <div className="bg-orange-100 rounded-full p-4 inline-block mb-4 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-300/50 transition-all duration-300 transform group-hover:scale-110">
+                <Shield className="h-8 w-8 text-orange-600 group-hover:text-white transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Modern & Secure</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors duration-300">Modern & Secure</h3>
               <p className="text-gray-600">Latest technologies with security best practices and industry standards</p>
             </div>
           </div>
@@ -192,7 +194,7 @@ const Home = () => {
           
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8">
+              <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105">
                 <div className="flex items-center mb-6">
                   <img
                     src={testimonial.image}

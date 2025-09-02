@@ -52,7 +52,7 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
+            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
               <p className="text-lg text-gray-700 mb-6">
                 To democratize access to modern technology solutions by providing high-quality, affordable IT services that help businesses grow and compete in the digital landscape.
@@ -61,7 +61,7 @@ const About = () => {
                 As a startup, we understand the challenges of growing businesses and are committed to providing personalized service with cutting-edge solutions that deliver real value.
               </p>
             </div>
-            <div>
+            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Vision</h2>
               <p className="text-lg text-gray-700 mb-6">
                 To become the go-to technology partner for startups and growing businesses, known for innovation, reliability, and exceptional client relationships.
@@ -84,12 +84,12 @@ const About = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-white rounded-full p-4 inline-block mb-6 shadow-lg">
+              <div key={index} className="text-center group cursor-pointer">
+                <div className="bg-white rounded-full p-4 inline-block mb-6 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-300/30 transition-all duration-300 transform group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-teal-50">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{value.title}</h3>
+                <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{value.description}</p>
               </div>
             ))}
           </div>

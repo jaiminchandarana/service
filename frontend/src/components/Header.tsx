@@ -46,8 +46,12 @@ const Header = () => {
                     <div
                       className="relative"
                       onMouseEnter={() => setShowServices(true)}
-                      onMouseLeave={() => setShowServices(false)}
-                    >
+                          <button
+                            onClick={() => {
+                              if (location.pathname !== '/services') {
+                                window.location.href = '/services';
+                              }
+                            }}
                       <Link
                         to={item.href}
                         className={`${
@@ -56,7 +60,7 @@ const Header = () => {
                             : 'text-gray-700 hover:text-blue-600'
                         } px-3 py-2 text-sm font-medium flex items-center transition-colors duration-200`}
                       >
-                        {item.name}
+                          </button>
                         <ChevronDown className="ml-1 h-4 w-4" />
                       </Link>
                       {showServices && (

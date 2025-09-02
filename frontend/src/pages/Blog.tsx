@@ -1,6 +1,20 @@
 import { Calendar, User, ArrowRight, Clock, Tag } from 'lucide-react';
+import { useState } from 'react';
+import BlogModal from '../components/BlogModal';
 
 const Blog = () => {
+  const [selectedPost, setSelectedPost] = useState<any>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleReadMore = (post: any) => {
+    const fullPost = {
+      ...post,
+      content: `Full article content for ${post.title}...`
+    };
+    setSelectedPost(fullPost);
+    setShowModal(true);
+  };
+
   const featuredPost = {
     title: 'The Future of AI in Business: Trends to Watch in 2025',
     excerpt: 'Discover the emerging AI trends that will reshape industries and create new opportunities for businesses of all sizes in the coming year.',
@@ -91,7 +105,8 @@ const Blog = () => {
   ];
 
   return (
-    <div>
+    <>
+      <div>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-teal-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,7 +122,8 @@ const Blog = () => {
       {/* Featured Post */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+               onClick={() => handleReadMore(featuredPost)}>
             <div className="grid lg:grid-cols-2 items-center">
               <div className="p-8 lg:p-12 text-white">
                 <div className="flex items-center mb-4">
@@ -124,13 +140,16 @@ const Blog = () => {
                   <Clock className="h-4 w-4 mr-2" />
                   <span>{featuredPost.readTime}</span>
                 </div>
-                <a
-                  href={`/blog/${featuredPost.slug}`}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleReadMore(featuredPost);
+                  }}
                   className="inline-flex items-center bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition-all duration-200 transform hover:scale-105"
                 >
                   Read Full Article
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </button>
               </div>
               <div className="h-full">
                 <img
@@ -153,7 +172,8 @@ const Blog = () => {
             <div className="lg:col-span-3">
               <div className="grid md:grid-cols-2 gap-8">
                 {blogPosts.map((post, index) => (
-                  <article key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                  <article key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-4 hover:scale-105 cursor-pointer group"
+                           onClick={() => handleReadMore(post)}>
                     <img
                       src={post.image}
                       alt={post.title}
@@ -164,7 +184,7 @@ const Blog = () => {
                         <Tag className="h-4 w-4 mr-2 text-blue-600" />
                         <span className="text-blue-600 text-sm font-medium">{post.category}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">{post.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors duration-300">{post.title}</h3>
                       <p className="text-gray-600 mb-4">{post.excerpt}</p>
                       <div className="flex items-center text-sm text-gray-500 mb-4">
                         <User className="h-4 w-4 mr-1" />
@@ -174,13 +194,16 @@ const Blog = () => {
                         <Clock className="h-4 w-4 mr-1" />
                         <span>{post.readTime}</span>
                       </div>
-                      <a
-                        href={`/blog/${post.slug}`}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleReadMore(post);
+                        }}
                         className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200"
                       >
                         Read More
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </a>
+                      </button>
                     </div>
                   </article>
                 ))}
@@ -203,7 +226,7 @@ const Blog = () => {
               <div className="space-y-8">
                 
                 {/* Categories */}
-                <div className="bg-white rounded-xl shadow-lg p-6">
+                <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Categories</h3>
                   <ul className="space-y-2">
                     {categories.map((category, index) => (
@@ -221,7 +244,7 @@ const Blog = () => {
                 </div>
 
                 {/* Recent Posts */}
-                <div className="bg-white rounded-xl shadow-lg p-6">
+                <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Recent Posts</h3>
                   <ul className="space-y-4">
                     {recentPosts.map((post, index) => (
@@ -239,7 +262,7 @@ const Blog = () => {
                 </div>
 
                 {/* Newsletter Signup */}
-                <div className="bg-gradient-to-br from-blue-600 to-teal-600 rounded-xl p-6 text-white">
+                <div className="bg-gradient-to-br from-blue-600 to-teal-600 rounded-xl p-6 text-white hover:shadow-xl hover:shadow-blue-300/30 transition-all duration-300 transform hover:scale-105">
                   <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
                   <p className="mb-4">Get the latest insights delivered to your inbox weekly.</p>
                   <form className="space-y-3">
@@ -282,7 +305,14 @@ const Blog = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+      
+      <BlogModal 
+        isOpen={showModal} 
+        onClose={() => setShowModal(false)}
+        post={selectedPost}
+      />
+    </>
   );
 };
 

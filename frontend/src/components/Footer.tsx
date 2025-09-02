@@ -1,7 +1,40 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin} from 'lucide-react';
+import { useState } from 'react';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubscribing(true);
+    
+    try {
+      const response = await fetch('https://jaiminchandaranaportfolio.vercel.app/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setIsSubscribed(true);
+        setEmail('');
+        setTimeout(() => setIsSubscribed(false), 3000);
+      } else {
+        throw new Error('Failed to subscribe');
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      alert('Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
   const services = [
     { name: 'Data Analytics & Visualization', href: '/services#data-analytics' },
     { name: 'AI & Machine Learning', href: '/services#ai-ml' },
@@ -97,16 +130,29 @@ const Footer = () => {
             
             <div className="mt-6">
               <h4 className="text-sm font-semibold mb-2">Stay Updated</h4>
-              <div className="flex">
+              {isSubscribed ? (
+                <div className="bg-green-600 text-white px-4 py-2 rounded-lg text-center">
+                  Successfully subscribed!
+                </div>
+              ) : (
+              <form onSubmit={handleSubscribe} className="flex">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   placeholder="Enter your email"
                   className="flex-1 px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-r-lg transition-colors duration-200">
-                  Subscribe
+                <button 
+                  type="submit"
+                  disabled={isSubscribing}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-r-lg transition-colors duration-200"
+                >
+                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
                 </button>
-              </div>
+              </form>
+              )}
             </div>
           </div>
         </div>

@@ -8,6 +8,10 @@ import Contact from './pages/Contact';
 import Careers from './pages/Careers';
 import Blog from './pages/Blog';
 import Testimonials from './pages/Testimonials';
+import Services from './pages/Services';
+import Refund from './pages/Refund';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
             <Route path="/careers" element={<Careers />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/refund" element={<Refund />} />
+            <Route path="/Terms" element={<Terms />} />
           </Routes>
         </main>
         <Footer />
